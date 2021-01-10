@@ -1877,10 +1877,7 @@ terminal_screen_child_exited (VteTerminal *terminal,
       info_bar = terminal_info_bar_new (GTK_MESSAGE_INFO,
                                         _("_Relaunch"), RESPONSE_RELAUNCH,
                                         NULL);
-      if (WIFEXITED (status)) {
-        terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
-                                      _("The child process exited normally with status %d."), WEXITSTATUS (status));
-      } else if (WIFSIGNALED (status)) {
+      if (WIFSIGNALED (status)) {
         terminal_info_bar_format_text (TERMINAL_INFO_BAR (info_bar),
                                       _("The child process was aborted by signal %d."), WTERMSIG (status));
       } else {
